@@ -6,25 +6,23 @@ const {isLogin } = require("./Controllers/AuthController")
 
 
 router.get('/',(req,res)=>{
-    res.send("Hello World");
+    res.send("Meme collection backend");
 })
-
-//  Tags CRUD
-router.post('/tags/create',TagsController.createTag);
-router.get('/tags',TagsController.getAllTags)
-router.get('/tags/:id',TagsController.getTag)
-router.put('/tags/:id',TagsController.UpdateTag)
-router.delete('/tags/:id',TagsController.DeleteTag)
-
 
 //Auth
 router.post('/signup',AuthController.signup)
 router.post('/login',AuthController.login)
 
 
-router.get('/isLogin',isLogin,(req,res)=>{
-    res.send("A protected route")
-    res.json(req.auth)
-    })
+//  Tags CRUD
+router.post('/tags/create',isLogin,TagsController.createTag);
+router.get('/tags',isLogin, TagsController.getAllTags)
+router.get('/tags/:id',isLogin,TagsController.getTag)
+router.put('/tags/:id',isLogin,TagsController.UpdateTag)
+router.delete('/tags/:id',isLogin,TagsController.DeleteTag)
+
+
+
+
 
 module.exports = router

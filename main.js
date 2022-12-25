@@ -23,7 +23,7 @@ mongoose.connect(`mongodb://${process.env.MONGODB_HOST}:${process.env.MONGODB_PO
 
 // Establish router
 const allRouter = require('./router');
-app.use('/', allRouter);
+app.use('/api/v1', allRouter);
 
 
 

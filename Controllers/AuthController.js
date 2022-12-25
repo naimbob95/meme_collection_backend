@@ -37,12 +37,12 @@ exports.login = async (req,res) =>{
         const {email,password} = req.body;
 
         if(!(email && password)){
-            res.send(400).send("Please enter email and password.");
+            res.res.sendStatus(400).send("Please enter email and password.");
         }
         const user = await User.findOne({email});
 
         if(!user){
-            res.send(404).json("The user does not exist!");
+            res.sendStatus(404).json("The user does not exist!");
         }
 
         const comparePassword = await bcrypt.compare(password,user.password);
